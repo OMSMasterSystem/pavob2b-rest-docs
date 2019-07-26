@@ -1,11 +1,7 @@
 ---
 title: API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+language_tabs: 
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -153,10 +149,6 @@ offset | 0 | The offset of items, used for paging
 update\_date\_after | epoch | If a DateTime object is provided, then this will return the products that were updated _after_ the date provided in the query.
 update\_date\_before | now | If a DateTime object is provided, then this will return the products that were updated _before_ the date provided in the query.
 
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ## Get Inventory
 > The Get Inventory Return structure
