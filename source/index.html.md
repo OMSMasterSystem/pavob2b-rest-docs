@@ -37,99 +37,106 @@ You must replace <code>meowmeowmeow</code> with The OMS API Key.
 
 ## Get Products
 
-> The above command returns JSON structured like this:
+> The Get Products return structure
 
 ```json
-[{
-  "item_num": "000001MON",
-  "upc": "",
-  "sku": "000001MON-02-10A",
-  "description1": "",
-  "description3": "",
-  "class_code": "001",
-  "division": "",
-  "department": "",
-  "active": "N",
-  "color": "02",
-  "color_desc": "Black",
-  "prepack_run": "10A",
-  "run_qty": "10",
-  "size": "",
-  "brand": "",
-  "year_produced": "",
-  "manufacture": "",
-  "model": "",
-  "style": "Nerd Style",
-  "season": "Summer",
-  "product_unit": {
-    "unit_name": "",
-    "pairs_per_case": "12"
-  },
-  "case_dimension": {
-    "unit": "INCH",
-    "volume": "0.0000"
-  },
-  "unit_dimension": {
-    "unit": "INCH",
-    "volume": "0.0000"
-  },
-  "case_weight": {
-    "unit": "POUND",
-    "value": "0.0000"
-  },
-  "unit_weight": {
-    "unit": "POUND",
-    "value": "0.0000"
-  },
-  "min_stock": "0",
-  "availability_qty": {
-    "in_stock": "15",
-    "allocated_qty": "0",
-    "post_stock_qty": "15",
-    "open_so_qty": "1",
-    "available_qty": "14",
-    "eta_rcv_dt_string": ""
-  },
-  "price_list": {
-    "business_type": [
-      {
-        "price": "240.00"
-      },
-      {
-        "price": "120.00"
-      },
-      {
-        "price": "240.00"
-      },
-      {
-        "price": "60.00"
-      },
-      {
-        "price": "30.00"
-      }
-    ],
-    "qty_type": [],
-    "color_type": [],
-    "size_type": [],
-    "selected_type": "business_type"
-  },
-  "available_qty": "14",
-  "price": "240.00",
-  "attributes": [
-    {
-      "name": "color",
-      "value": "02"
-    },
-    {
-      "name": "run",
-      "value": "10A"
-    },
-    {
-      "name": "size",
-      "value": ""
-    }
-  ]
-}]
+{
+	"products": [{
+	  "item_num": "000001MON",
+	  "upc": "",
+	  "sku": "000001MON-02-10A",
+	  "description1": "",
+	  "description3": "",
+	  "class_code": "001",
+	  "division": "",
+	  "department": "",
+	  "active": "N",
+	  "color": "02",
+	  "color_desc": "Black",
+	  "prepack_run": "10A",
+	  "run_qty": "10",
+	  "size": "",
+	  "brand": "",
+	  "year_produced": "",
+	  "manufacture": "",
+	  "model": "",
+	  "style": "Nerd Style",
+	  "season": "Summer",
+	  "product_unit": {
+	    "unit_name": "",
+	    "pairs_per_case": "12"
+	  },
+	  "case_dimension": {
+	    "unit": "INCH",
+	    "volume": "0.0000"
+	  },
+	  "unit_dimension": {
+	    "unit": "INCH",
+	    "volume": "0.0000"
+	  },
+	  "case_weight": {
+	    "unit": "POUND",
+	    "value": "0.0000"
+	  },
+	  "unit_weight": {
+	    "unit": "POUND",
+	    "value": "0.0000"
+	  },
+	  "min_stock": "0",
+	  "availability_qty": {
+	    "in_stock": "15",
+	    "allocated_qty": "0",
+	    "post_stock_qty": "15",
+	    "open_so_qty": "1",
+	    "available_qty": "14",
+	    "eta_rcv_dt_string": ""
+	  },
+	  "price_list": {
+	    "business_type": [
+	      {
+	        "price": "240.00"
+	      },
+	      {
+	        "price": "120.00"
+	      },
+	      {
+	        "price": "240.00"
+	      },
+	      {
+	        "price": "60.00"
+	      },
+	      {
+	        "price": "30.00"
+	      }
+	    ],
+	    "qty_type": [],
+	    "color_type": [],
+	    "size_type": [],
+	    "selected_type": "business_type"
+	  },
+	  "available_qty": "14",
+	  "price": "240.00",
+	  "attributes": [
+	    {
+	      "name": "color",
+	      "value": "02"
+	    },
+	    {
+	      "name": "run",
+	      "value": "10A"
+	    },
+	    {
+	      "name": "size",
+	      "value": ""
+	    }
+	  ]
+	}],
+	"limit": 500,
+	"offset": 0,
+	"total": 2,
+	"build_date": "2019-07-23 17:04:08.652412",
+	"githash": "fc8613c12e43a837406714328bba6d9456626306"
+}
 ```
 
 This endpoint retrieves all products associated with a store ID. If there is no store ID specified, then we will return all products from OMS.
@@ -151,63 +158,255 @@ This endpoint retrieves a specific kitten.
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
+## Get Inventory
+> The Get Inventory Return structure
+
+```json
+{
+  "products": [
+    {
+      "item_num": "000001MON",
+      "upc": "",
+      "sku": "000001MON-01-X-L",
+      "description1": "",
+      "active": "N",
+      "color_desc": "Gray",
+      "prepack_run": "X",
+      "product_unit": {
+        "unit_name": "",
+        "pairs_per_case": "12"
+      },
+      "min_stock": "0",
+      "price_list": {
+        "business_type": [
+          {
+            "price": "240.00"
+          },
+          {
+            "price": "120.00"
+          },
+          {
+            "price": "240.00"
+          },
+          {
+            "price": "60.00"
+          },
+          {
+            "price": "30.00"
+          }
+        ],
+        "qty_type": [],
+        "color_type": [],
+        "size_type": [],
+        "selected_type": "business_type"
+      },
+      "po_list": [],
+      "available_qty": "0",
+      "price": "0.00",
+      "store_sku": "000001MON-01-X-L",
+      "store_id": "OMS",
+      "store_qty": "100",
+      "store_price": "0.00",
+      "customize": "",
+      "location_qty": [
+        {
+          "whs_num": "01",
+          "store_qty": "0",
+          "available_qty": "0",
+          "min_stock": "0",
+          "in_stock": "0"
+        }
+      ]
+    },
+    {
+      "item_num": "000001MON",
+      "upc": "",
+      "sku": "000001MON-01-X-M",
+      "description1": "",
+      "active": "N",
+      "color_desc": "Gray",
+      "prepack_run": "X",
+      "product_unit": {
+        "unit_name": "",
+        "pairs_per_case": "12"
+      },
+      "min_stock": "0",
+      "price_list": {
+        "business_type": [
+          {
+            "price": "240.00"
+          },
+          {
+            "price": "120.00"
+          },
+          {
+            "price": "240.00"
+          },
+          {
+            "price": "60.00"
+          },
+          {
+            "price": "30.00"
+          }
+        ],
+        "qty_type": [],
+        "color_type": [],
+        "size_type": [],
+        "selected_type": "business_type"
+      },
+      "po_list": [],
+      "available_qty": "0",
+      "price": "0.00",
+      "store_sku": "000001MON-01-X-M",
+      "store_id": "OMS",
+      "store_qty": "100",
+      "store_price": "22.00",
+      "customize": "",
+      "location_qty": []
+    }],
+    "limit": 500,
+    "offset": 0,
+    "total": 2,
+    "build_date": "2019-07-25 11:22:25.075399",
+    "githash": "2c128aea5fcb643464107fea253f42b8b3823117"
+}
+```
+Getting inventory will return you the quantity and pricing of a particular SKU.
+
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET InventoryApi/Inventory/<store_id>`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Default | Description
+--------- | ---| -----------
+offset | 0 | The offset of items, used for paging.
 
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+## Post Inventory Update
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "products": [
+    {
+      "item_num": "000001MON",
+      "upc": "",
+      "sku": "000001MON-01-X-L",
+      "description1": "",
+      "active": "N",
+      "color_desc": "Gray",
+      "prepack_run": "X",
+      "product_unit": {
+        "unit_name": "",
+        "pairs_per_case": "12"
+      },
+      "min_stock": "0",
+      "price_list": {
+        "business_type": [
+          {
+            "price": "240.00"
+          },
+          {
+            "price": "120.00"
+          },
+          {
+            "price": "240.00"
+          },
+          {
+            "price": "60.00"
+          },
+          {
+            "price": "30.00"
+          }
+        ],
+        "qty_type": [],
+        "color_type": [],
+        "size_type": [],
+        "selected_type": "business_type"
+      },
+      "po_list": [],
+      "available_qty": "0",
+      "price": "0.00",
+      "store_sku": "000001MON-01-X-L",
+      "store_id": "OMS",
+      "store_qty": "100",
+      "store_price": "0.00",
+      "customize": "",
+      "location_qty": [
+        {
+          "whs_num": "01",
+          "store_qty": "0",
+          "available_qty": "0",
+          "min_stock": "0",
+          "in_stock": "0"
+        }
+      ]
+    },
+    {
+      "item_num": "000001MON",
+      "upc": "",
+      "sku": "000001MON-01-X-M",
+      "description1": "",
+      "active": "N",
+      "color_desc": "Gray",
+      "prepack_run": "X",
+      "product_unit": {
+        "unit_name": "",
+        "pairs_per_case": "12"
+      },
+      "min_stock": "0",
+      "price_list": {
+        "business_type": [
+          {
+            "price": "240.00"
+          },
+          {
+            "price": "120.00"
+          },
+          {
+            "price": "240.00"
+          },
+          {
+            "price": "60.00"
+          },
+          {
+            "price": "30.00"
+          }
+        ],
+        "qty_type": [],
+        "color_type": [],
+        "size_type": [],
+        "selected_type": "business_type"
+      },
+      "po_list": [],
+      "available_qty": "0",
+      "price": "0.00",
+      "store_sku": "000001MON-01-X-M",
+      "store_id": "OMS",
+      "store_qty": "100",
+      "store_price": "22.00",
+      "customize": "",
+      "location_qty": []
+    }],
+    "limit": 500,
+    "offset": 0,
+    "total": 2,
+    "build_date": "2019-07-25 11:22:25.075399",
+    "githash": "2c128aea5fcb643464107fea253f42b8b3823117"
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint posts inventory updates to OMS. If a SKU is not recognized by OMS, it will be added to the store ID. SKUs that match a certain OMS item number will then be mapped automatically.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`POST InventoryApi/Inventory/`
 
-### URL Parameters
+### URL Body
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+<aside class="notice">
+You must add a warehouse number in order to retreive that particular OMS warehouse's quantity.
+</aside>
 
