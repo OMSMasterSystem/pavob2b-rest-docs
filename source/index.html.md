@@ -19,159 +19,133 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This is the alpha version of the OMS API documentation.
 
 # Authentication
 
-> To authorize, use this code:
+To authorize, use the access key from the AdminGMW/SHW/APW website. More details to follow.
 
-```ruby
-require 'kittn'
+When performing API requests, the OMS API expects the Header to contain a Base64 encoded key as follows.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Basic meowmeowmeow`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>meowmeowmeow</code> with The OMS API Key.
 </aside>
 
-# Kittens
+# Inventory API
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+## Get Products
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+[{
+  "item_num": "000001MON",
+  "upc": "",
+  "sku": "000001MON-02-10A",
+  "description1": "",
+  "description3": "",
+  "class_code": "001",
+  "division": "",
+  "department": "",
+  "active": "N",
+  "color": "02",
+  "color_desc": "Black",
+  "prepack_run": "10A",
+  "run_qty": "10",
+  "size": "",
+  "brand": "",
+  "year_produced": "",
+  "manufacture": "",
+  "model": "",
+  "style": "Nerd Style",
+  "season": "Summer",
+  "product_unit": {
+    "unit_name": "",
+    "pairs_per_case": "12"
   },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+  "case_dimension": {
+    "unit": "INCH",
+    "volume": "0.0000"
+  },
+  "unit_dimension": {
+    "unit": "INCH",
+    "volume": "0.0000"
+  },
+  "case_weight": {
+    "unit": "POUND",
+    "value": "0.0000"
+  },
+  "unit_weight": {
+    "unit": "POUND",
+    "value": "0.0000"
+  },
+  "min_stock": "0",
+  "availability_qty": {
+    "in_stock": "15",
+    "allocated_qty": "0",
+    "post_stock_qty": "15",
+    "open_so_qty": "1",
+    "available_qty": "14",
+    "eta_rcv_dt_string": ""
+  },
+  "price_list": {
+    "business_type": [
+      {
+        "price": "240.00"
+      },
+      {
+        "price": "120.00"
+      },
+      {
+        "price": "240.00"
+      },
+      {
+        "price": "60.00"
+      },
+      {
+        "price": "30.00"
+      }
+    ],
+    "qty_type": [],
+    "color_type": [],
+    "size_type": [],
+    "selected_type": "business_type"
+  },
+  "available_qty": "14",
+  "price": "240.00",
+  "attributes": [
+    {
+      "name": "color",
+      "value": "02"
+    },
+    {
+      "name": "run",
+      "value": "10A"
+    },
+    {
+      "name": "size",
+      "value": ""
+    }
+  ]
+}]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all products associated with a store ID. If there is no store ID specified, then we will return all products from OMS.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET InventoryApi/Products/<store_id>`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+offset | 0 | The offset of items, used for paging
+update\_date\_after | epoch | If a DateTime object is provided, then this will return the products that were updated _after_ the date provided in the query.
+update\_date\_before | now | If a DateTime object is provided, then this will return the products that were updated _before_ the date provided in the query.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
 
 This endpoint retrieves a specific kitten.
 
