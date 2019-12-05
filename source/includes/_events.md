@@ -4,19 +4,33 @@ The event endpoint allows you to retreive events from OMS, such as when you want
 
 ## Event Properties
 
-| Attribute     | Type      | Description                                            |
-| ------------- | --------- | ------------------------------------------------------ |
-| `event_id`    | string    | Event ID.                                              |
-| `title`       | string    | Event name.                                            |
-| `description` | string    | Event description.                                     |
-| `image`       | string    | Image filepath, relative to the base filepath setting. |
-| `sequence`    | integer   | Sequence of this event, starting with `0`.             |
-| `active`      | boolean   | Whether this event is active.                          |
-| `start_date`  | date-time | The date this event is to start.                       |
-| `end_date`    | date-time | The date this event is to end.                         |
-| `update_date` | date-time | The date this event was last updated.                  |
-| `updated_by`  | string    | The OMS user who performed the last update.            |
-| `line_items`  | array     | An array of line items for each product in the event.  |
+| Attribute     | Type      | Description                                                                             |
+| ------------- | --------- | --------------------------------------------------------------------------------------- |
+| `event_id`    | string    | Event ID.                                                                               |
+| `title`       | string    | Event name.                                                                             |
+| `description` | string    | Event description.                                                                      |
+| `image`       | string    | Image filepath, relative to the base filepath setting.                                  |
+| `sequence`    | integer   | Sequence of this event, starting with `0`.                                              |
+| `active`      | boolean   | Whether this event is active.                                                           |
+| `start_date`  | date-time | The date this event is to start.                                                        |
+| `end_date`    | date-time | The date this event is to end.                                                          |
+| `update_date` | date-time | The date this event was last updated.                                                   |
+| `updated_by`  | string    | The OMS user who performed the last update.                                             |
+| `line_items`  | array     | An array of line items for each product in the event. See `Event Line Item Properties`. |
+
+### Event Line Item Properties
+
+| Attribute      | Type   | Description                                                                                                                                                                                                                     |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`           | string | Event Line Item ID.                                                                                                                                                                                                             |
+| `item_num`     | string | OMS Item Number.                                                                                                                                                                                                                |
+| `sku`          | string | OMS Item SKU. In some systems, it will match the OMS Item Number. For systems that have color and size/run, it follows the convention: `<item_num>-<color>-<run>`. For X-runs, the convention is `<item_num>-<color>-X-<size>`. |
+| `description1` | string | Description line 1 in the OMS Inventory File.                                                                                                                                                                                   |
+| `description2` | string | Description line 2 in the OMS Inventory File.                                                                                                                                                                                   |
+| `description3` | string | Description line 3 in the OMS Inventory File.                                                                                                                                                                                   |
+| `retail_price` | string | The retail, or list price of this item. This property will return `null` if there is no user associated with the request made to the endpoint.                                                                                  |
+| `price`        | string | The selling price of this item. This property will return `null` if there is no user associated with the request made to the endpoint.                                                                                          |
+| `images`       | array  | An array of filepaths to images of this particular item. The filepath is relative to the base filepath string.                                                                                                                  |
 
 ## Get all events
 
