@@ -44,7 +44,6 @@ The products endpoint allows you to retreive products from OMS, allowing you to 
 | `minimum`      | number | The minimum quantity of the item. This is only filled in if the `price_by` property is set to `quantity_type` in the Product object.                                                         |
 | `maximum`      | number | The maximum quantity of the item. If there is no limit, this property will be not be set. This is only filled in if the `price_by` property is set to `quantity_type` in the Product object. |
 
-
 ### Dimensions
 
 All objects in the Dimension objects have a `unit` and a `value` property. `unit` is a string and `value` is a number. Refer to each property to see in detail.
@@ -75,5 +74,281 @@ curl https://example.com/api/products
 
 #### Available Filters
 
-| Filter       | Type   | Description                                                                                                                                                           |
-| --------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Filter   | Type    | Description                                                           |
+| -------- | ------- | --------------------------------------------------------------------- |
+| `limit`  | integer | Maximum number of items to return. Default is `500`.                  |
+| `offset` | integer | The index on where in the list of products to return. Default is `0`. |
+
+>JSON response example:
+
+```json
+{
+  "products": [
+    {
+      "item_num": "00-010-078",
+      "sku": "00-010-078",
+      "description1": "OMS Casual Leather Handbag cell",
+      "description2": "Interior zipper pocket and two slip pocketswwww",
+      "description3": "Roomy main compartmentssss",
+      "brand": "DISNEY Park",
+      "class_code": "ZZZA",
+      "color": "RED",
+      "color_description": "",
+      "division": "DD112",
+      "department": "11",
+      "oem_code": "YAOME1234567890_1820",
+      "alternate_code": "APPLE",
+      "year_produced": "2015",
+      "manufacturer": "TOYOTA",
+      "model": "CAMRY",
+      "group_code": "GP1",
+      "size": "A17",
+      "price_by": "business_type",
+      "prices": [
+        {
+          "retail_price": 100,
+          "price": 98.23
+        }
+      ],
+      "quantity": 13451,
+      "case_dimensions": {
+        "volume": {
+          "unit": "INCH",
+          "value": 1.9444
+        },
+        "weight": {
+          "unit": "POUND",
+          "value": 3
+        },
+        "box_quantity": {
+          "unit": "CS",
+          "value": 5
+        },
+        "case_quantity": {
+          "unit": "2",
+          "value": 150
+        }
+      },
+      "unit_dimensions": {
+        "volume": {
+          "unit": "INCH",
+          "value": 0.9931
+        },
+        "weight": {
+          "unit": "POUND",
+          "value": 2
+        }
+      },
+      "images": []
+    },
+    {
+      "item_num": "00-010-079",
+      "sku": "00-010-079",
+      "description1": "OMS Halloween Decor Pumpkin Cookies",
+      "description2": "YUFENG Green Latex Pumpkin Head Masks of Cosplay",
+      "description3": "Halloween Masquerade Party Creepy Scary Terrorist Mask",
+      "brand": "",
+      "class_code": "SALE",
+      "color": "PINK",
+      "color_description": "",
+      "division": "",
+      "department": "KID",
+      "oem_code": "",
+      "alternate_code": "",
+      "year_produced": "2015",
+      "manufacturer": "",
+      "model": "",
+      "group_code": "",
+      "size": "M",
+      "price_by": "business_type",
+      "prices": [
+        {
+          "retail_price": 89.57,
+          "price": 66
+        }
+      ],
+      "quantity": 9364,
+      "case_dimensions": {
+        "volume": {
+          "unit": "INCH",
+          "value": 10
+        },
+        "weight": {
+          "unit": "POUND",
+          "value": 12
+        },
+        "box_quantity": {
+          "unit": "PC",
+          "value": 100
+        },
+        "case_quantity": {
+          "unit": "PC",
+          "value": 200
+        }
+      },
+      "unit_dimensions": {
+        "volume": {
+          "unit": "INCH",
+          "value": 1
+        },
+        "weight": {
+          "unit": "POUND",
+          "value": 0.5
+        }
+      },
+      "images": []
+    }
+    // Truncated for clarity
+    ...
+  ],
+  "offset": 0,
+  "limit": 500,
+  "total": 11681
+}
+```
+
+## Get a product's images
+
+This endpoint lets you fetch images for a particular OMS item.
+
+### HTTP Request
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/products/images/&lt;oms_item_num&gt;</h6>
+    </div>
+</div>
+
+```shell
+curl https://example.com/api/product/images/00-010-078
+```
+
+#### Available Filters
+
+| Filter        | Type   | Description                                    |
+| ------------- | ------ | ---------------------------------------------- |
+| `color`       | string | The color of the product.                      |
+| `prepack_run` | string | The prepack run of the product, if applicable. |
+| `size`        | string | The size of the product, if applicable.        |
+
+>JSON response example:
+
+```json
+[
+  "/images/00-010-078--1.jpg",
+  "/images/00-010-078--2.jpg",
+  "/images/00-010-078--3.jpg"
+]
+```
+
+## Get available filters
+
+This endpoint lets you determine what filters are available when filtering through a list of products.
+
+### HTTP Request
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/products/filters</h6>
+    </div>
+</div>
+
+```shell
+curl https://example.com/api/products/filters
+```
+
+#### Available Filters
+
+| Filter    | Type    | Description                                                                                              |
+| --------- | ------- | -------------------------------------------------------------------------------------------------------- |
+| `loadAll` | boolean | If `loadAll` is `false`, then only return the first 10 results of a filter category. Default is `false`. |
+
+>JSON response example:
+
+```json
+[ 
+  {
+    "filter_name": "KIDS",
+    "enabled": true,
+    "value_list": [
+      {
+        "name": "#000000",
+        "count": "2"
+      },
+      {
+        "name": "#002",
+        "count": "2"
+      },
+      {
+        "name": "#008000",
+        "count": "4"
+      },
+      {
+        "name": "#15317E",
+        "count": "2"
+      },
+      {
+        "name": "0",
+        "count": "1"
+      },
+      {
+        "name": "10.56",
+        "count": "1"
+      },
+      {
+        "name": "12-Aug",
+        "count": "4"
+      },
+      {
+        "name": "120",
+        "count": "5"
+      },
+      {
+        "name": "123",
+        "count": "7"
+      },
+      {
+        "name": "1234567890",
+        "count": "28"
+      }
+    ]
+  },
+  {
+    "filter_name": "Price",
+    "enabled": true,
+    "value_list": [
+      {
+        "name": "Under $10.00",
+        "count": "1874",
+        "price_from": "0",
+        "price_to": "10"
+      },
+      {
+        "name": "$10.00 to $25.00",
+        "count": "1345",
+        "price_from": "10",
+        "price_to": "25"
+      },
+      {
+        "name": "$25.00 to $50.00",
+        "count": "214",
+        "price_from": "25",
+        "price_to": "50"
+      },
+      {
+        "name": "$50.00 to $100.00",
+        "count": "222",
+        "price_from": "50",
+        "price_to": "100"
+      },
+      {
+        "name": "$100.00 & Above",
+        "count": "134",
+        "price_from": "100",
+        "price_to": "-1"
+      }
+    ]
+  }
+]
