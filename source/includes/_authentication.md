@@ -49,14 +49,6 @@ When logging in as an enterprise user, the enterprise user will have differing l
     </div>
 </div>
 
-### Login request object
-
-| Attribute         | Type    | Description                                                                                       |
-| ----------------- | ------- | ------------------------------------------------------------------------------------------------- |
-| `username`        | string  | Username or email address of user trying to login.                                                |
-| `password`        | string  | Password of user trying to login.                                                                 |
-| `enterprise_user` | boolean | If the user logging in is a customer or an enterprise (i.e. OMS system) user. Default is `false`. |
-
 ```shell
 
 For a customer login:
@@ -75,6 +67,14 @@ curl -X POST https://example.com/api/login \
         "password": "oms"
     }'
 ```
+
+### Login request object
+
+| Attribute         | Type    | Description                                                                                       |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------------- |
+| `username`        | string  | Username or email address of user trying to login.                                                |
+| `password`        | string  | Password of user trying to login.                                                                 |
+| `enterprise_user` | boolean | If the user logging in is a customer or an enterprise (i.e. OMS system) user. Default is `false`. |
 
 >JSON response example for customer login:
 
@@ -102,7 +102,7 @@ curl -X POST https://example.com/api/login \
 
 This endpoint will log the current user out based on the cookie provided. The logout will redirect the user to the homepage (`/`).
 
-<aside class="notice">
+<aside class="warning">
 A user must be logged in to perform this call.
 </aside>
 
@@ -123,7 +123,7 @@ curl https://example.com/api/logout
 
 This endpoint will return the current user information with the cookie provided. If no user is found, it will return an empty response body.
 
-<aside class="notice">
+<aside class="warning">
 A user must be logged in to perform this call.
 </aside>
 
@@ -166,7 +166,7 @@ curl https://example.com/api/current_user
 
 This endpoint will return the customer's detail from the OMS Customer File. A customer must be logged in. If an enterprise user is logged in or no user is logged in, it will return an empty response body.
 
-<aside class="notice">
+<aside class="warning">
 A user must be logged in to perform this call.
 </aside>
 
@@ -178,6 +178,10 @@ A user must be logged in to perform this call.
         <h6>/api/current_customer_detail</h6>
     </div>
 </div>
+
+```shell
+curl https://example.com/api/current_customer_detail
+```
 
 ### Customer response object
 
@@ -197,18 +201,14 @@ A user must be logged in to perform this call.
 
 ### Address object
 
-| Attribute  | Type   | Description                                                                   |
-| ---------- | ------ | ----------------------------------------------------------------------------- |
-| `address`  | string | Address Line 1. Typically a street name with house number.                    |
-| `address2` | string | Address Line 2. Typically an apartment, suite, or any additional information. |
-| `city`     | string | City or Municipality.                                                         |
-| `state`    | string | State or Province.                                                            |
-| `zip`      | string | Postal Code.                                                                  |
-| `country`  | string | Country, as described in OMS.                                                 |
-
-```shell
-curl https://example.com/api/current_customer_detail
-```
+| Attribute        | Type   | Description                                                                   |
+| ---------------- | ------ | ----------------------------------------------------------------------------- |
+| `address_line_1` | string | Address Line 1. Typically a street name with house number.                    |
+| `address_line_2` | string | Address Line 2. Typically an apartment, suite, or any additional information. |
+| `city`           | string | City or Municipality.                                                         |
+| `state`          | string | State or Province.                                                            |
+| `zip`            | string | Postal Code.                                                                  |
+| `country`        | string | Country, as described in OMS.                                                 |
 
 >JSON response example:
 
@@ -225,16 +225,16 @@ curl https://example.com/api/current_customer_detail
   "email": "rusty@shackleford.com",
   "customer_since": "12/4/2019",
   "billing_address": {
-    "address": "117 E DUARTE RD",
-    "address2": "",
+    "address_line_1": "117 E DUARTE RD",
+    "address_line_2": "",
     "city": "ARCADIA",
     "state": "CA",
     "zip": "91006",
     "country": "UNITED STATES"
   },
   "shipping_address": {
-    "address": "735 W DUARTE RD",
-    "address2": "SUITE 407",
+    "address_line_1": "735 W DUARTE RD",
+    "address_line_2": "SUITE 407",
     "city": "ARCADIA",
     "state": "CA",
     "zip": "91006",
