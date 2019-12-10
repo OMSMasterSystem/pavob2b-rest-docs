@@ -261,9 +261,9 @@ curl https://example.com/api/products/filters
 
 #### Available Filters
 
-| Filter    | Type    | Description                                                                                              |
-| --------- | ------- | -------------------------------------------------------------------------------------------------------- |
-| `loadAll` | boolean | If `loadAll` is `false`, then only return the first 10 results of a filter category. Default is `false`. |
+| Filter     | Type    | Description                                                                                               |
+| ---------- | ------- | --------------------------------------------------------------------------------------------------------- |
+| `load_all` | boolean | If `load_all` is `false`, then only return the first 10 results of a filter category. Default is `false`. |
 
 >JSON response example:
 

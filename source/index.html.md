@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs: 
   - shell: cURL
+  - javascript: React.js
 
 toc_footers:
   - Last updated 2019-12-09
