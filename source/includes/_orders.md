@@ -117,6 +117,34 @@ curl -X POST https://example.com/api/orders
     }'
 ```
 
+```javascript
+PavoB2B.post("orders", {
+  "email": "asdf@asdf.com",
+  "source": "Pavo B2B",
+  "billing_address": {
+      "full_name": "Rusty",
+      "address_line_1": "117 E. Duarte Rd",
+      "city": "Arcadia",
+      "state": "CA",
+      "zip": "91006",
+      "country": "United States"
+  },
+  "shipping_address": {
+      "full_name": "Rusty",
+      "address_line_1": "117 E. Duarte Rd",
+      "city": "Arcadia",
+      "state": "CA",
+      "zip": "91006",
+      "country": "United States"
+  })
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
 ### Request object properties
 
 | Attribute          | Type                   | Description                                                                                                                                |
@@ -171,31 +199,29 @@ curl -X POST https://example.com/api/orders
   "shipping_method": {
       "shipping_method": ""
   },
-  "line_items": [
-    {
-      "line_item_id": 0,
-      "item_num": "00-010-078",
-      "upc": "87456118625",
-      "sku": "00-010-078",
-      "description": "OMS Casual Leather Handbag cell",
-      "color": "",
-      "size": "",
-      "component_item": false,
-      "taxable": false,
-      "order_quantity": 2,
-      "shipped_quantity": null,
-      "cancelled_quantity": 0,
-      "ship_date": "2019-12-09T08:00:00.000Z",
-      "item_note": "",
-      "price": 98.23,
-      "after_discount_price": 196.46,
-      "discount_rate": 0,
-      "taxable_amount": 0,
-      "non_taxable_amount": 196.46,
-      "warehouse": "01",
-      "image": "/images/00-010-078--1.jpg"
-    }
-  ]
+  "line_items": [{
+    "line_item_id": 0,
+    "item_num": "00-010-078",
+    "upc": "87456118625",
+    "sku": "00-010-078",
+    "description": "OMS Casual Leather Handbag cell",
+    "color": "",
+    "size": "",
+    "component_item": false,
+    "taxable": false,
+    "order_quantity": 2,
+    "shipped_quantity": null,
+    "cancelled_quantity": 0,
+    "ship_date": "2019-12-09T08:00:00.000Z",
+    "item_note": "",
+    "price": 98.23,
+    "after_discount_price": 196.46,
+    "discount_rate": 0,
+    "taxable_amount": 0,
+    "non_taxable_amount": 196.46,
+    "warehouse": "01",
+    "image": "/images/00-010-078--1.jpg"
+  }]
 }
 ```
 
@@ -224,6 +250,16 @@ For performance considerations, this endpoint will only list a subset of propert
 curl https://example.com/api/orders
 ```
 
+```javascript
+PavoB2B.get("orders")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
 ### Available Filters
 
 | Filter   | Type    | Description                                                           |
@@ -244,29 +280,30 @@ curl https://example.com/api/orders
 
 ```json
 {
-  "orders": [
-    {
-      "order_num": "35895",
-      "order_date": "2019-12-09T20:18:23.000Z",
-      "total": 196.46,
-    },
-    {
-      "order_num": "35894",
-      "order_date": "2019-12-09T19:40:41.000Z",
-      "total": 98.23,
-    },
-    {
-      "order_num": "35893",
-      "order_date": "2019-12-09T19:38:36.000Z",
-      "total": 98.23,
-    },
-    {
-      "order_num": "35892",
-      "order_date": "2019-12-09T19:37:34.000Z",
-      "total": 98.23,
-    }
+  "orders": [{
+    "order_num": "35895",
+    "order_date": "2019-12-09T20:18:23.000Z",
+    "total": 196.46,
+  },
+  {
+    "order_num": "35894",
+    "order_date": "2019-12-09T19:40:41.000Z",
+    "total": 98.23,
+  },
+  {
+    "order_num": "35893",
+    "order_date": "2019-12-09T19:38:36.000Z",
+    "total": 98.23,
+  },
+  {
+    "order_num": "35892",
+    "order_date": "2019-12-09T19:37:34.000Z",
+    "total": 98.23,
+  },
+  {
     // Truncated for clarity
-  ],
+    // ...
+  }],
   "limit": 100,
   "offset": 0,
   "total": 158

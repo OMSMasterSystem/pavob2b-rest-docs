@@ -59,6 +59,16 @@ This endpoint lets you retreive and view all the events.
 curl https://example.com/api/events
 ```
 
+```javascript
+PavoB2B.get("events")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
 > JSON response example:
 
 ```json
@@ -526,6 +536,16 @@ This endpoint lets you retreive and view all the events.
 
 ```shell
 curl https://example.com/api/events/1128
+```
+
+```javascript
+PavoB2B.get("events/1128")
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 > JSON response example:

@@ -56,6 +56,16 @@ A user must be logged in to perform this call.
 curl https://example.com/api/shopping_cart
 ```
 
+```javascript
+PavoB2B.get("shopping_cart")
+    .then((response) => {
+        console.log(response.data);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+```
+
 ### Available Filters
 
 | Filter   | Type    | Description                                                                                                                                        |
@@ -136,6 +146,33 @@ curl -X POST https://example.com/api/shopping_cart
             "stock_qty": 3000
         }]
     }'
+```
+
+```javascript
+PavoB2B.post("shopping_cart", {
+        "username": "abc@abc.com",
+        "customer_id": "0000000020",
+        "payment_type": null,
+        "taxable": false,
+        "shipping_method": null,
+        "email": null,
+        "phone": null,
+        "line_items": [{
+            "oms_item_num": "MMDS",
+            "sku": "MMDS-BLK-12A",
+            "product_name": "Mickey Mouse Slippers",
+            "quantity": 2,
+            "unit_price": 15.00,
+            "retail_price": 30.00,
+            "stock_qty": 3000
+        }]
+    })
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 ```
 
 >JSON response example:

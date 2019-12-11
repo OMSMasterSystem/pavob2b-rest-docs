@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Pavo B2B REST API Reference
 
 language_tabs: 
   - shell: cURL
