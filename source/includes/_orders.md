@@ -331,6 +331,15 @@ A user must be logged in to perform this call.
 curl https://example.com/api/orders/1234
 ```
 
+```javascript
+PavoB2B.get("orders/1234")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
 >JSON response example:
 
 ```json

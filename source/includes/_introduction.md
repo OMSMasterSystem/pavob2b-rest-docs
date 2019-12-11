@@ -6,10 +6,6 @@ This is the alpha version of the Pavo B2B API documentation.
 
 The following official libraries are available for you to aid in developing your site.
 
-<aside class="notice">
-    `urlPrefix` is the base URL that should link to the back-end server to call the endpoints.
-</aside>
-
 JavaScript (React.js)
 
 ```javascript
@@ -20,6 +16,11 @@ JavaScript (React.js)
 let PavoB2BAPI = require('pavob2b');
 
 let PavoB2B = new PavoB2BAPI({
-    urlPrefix: "https://api.example.com", // Your website prefix
+    /**
+     * Your website prefix. If this is not filled in, your existing front-end server URL will be used with "/api/" appended.
+     *
+     * Example: If your website name is "https://www.example.com" and you do not specify a urlPrefix, all calls will be routed to "https://www.example.com/api/".
+    **/
+    urlPrefix: "https://api.example.com",
 });
 ```

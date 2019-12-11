@@ -12,12 +12,11 @@ When a user logs in, a cookie will be returned from the server to the front-end 
 
 ### User object
 
-| Attribute         | Type            | Description                                                                                                   |
-| ----------------- | --------------- | ------------------------------------------------------------------------------------------------------------- |
-| `username`        | string          | Username or email address of user trying to login.                                                            |
-| `login_type`      | string          | The type of user that logged in. Possible values are `enterprise`, `super_user`, `sales_rep`, and `customer`. |
-| `enterprise_user` | boolean         | If the user logging in is a customer or an enterprise (i.e. OMS system) user.                                 |
-| `customer`        | Customer object | If `login_type` is `customer`, the response object will return a Customer object with more information.       |
+| Attribute    | Type            | Description                                                                                                                                             |
+| ------------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `username`   | string          | Username or email address of user trying to login.                                                                                                      |
+| `login_type` | string          | The type of user that logged in. Possible values are `enterprise`, `super_user`, `sales_rep`, and `customer`. <i class="label label-info">read-only</i> |
+| `customer`   | Customer object | If `login_type` is `customer`, the response object will return a Customer object with more information. <i class="label label-info">read-only</i>       |
 
 ### Customer object
 
@@ -49,6 +48,14 @@ When logging in as an enterprise user, the enterprise user will have differing l
     </div>
 </div>
 
+### Login request object
+
+| Attribute         | Type    | Description                                                                                       |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------------- |
+| `username`        | string  | Username or email address of user trying to login.                                                |
+| `password`        | string  | Password of user trying to login.                                                                 |
+| `enterprise_user` | boolean | If the user logging in is a customer or an enterprise (i.e. OMS system) user. Default is `false`. |
+
 ```shell
 
 For a customer login:
@@ -65,16 +72,40 @@ curl -X POST https://example.com/api/login \
     -d '{
         "username": "oms",
         "password": "oms"
+        "enterprise_user": true
     }'
 ```
 
-### Login request object
+```javascript
 
-| Attribute         | Type    | Description                                                                                       |
-| ----------------- | ------- | ------------------------------------------------------------------------------------------------- |
-| `username`        | string  | Username or email address of user trying to login.                                                |
-| `password`        | string  | Password of user trying to login.                                                                 |
-| `enterprise_user` | boolean | If the user logging in is a customer or an enterprise (i.e. OMS system) user. Default is `false`. |
+// For a customer login:
+
+PavoB2B.post("login", {
+     "username": "rusty@shackleford.com",
+     "password": "rustyshackleford"
+  })
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+// For enterprise login:
+
+PavoB2B.post("login", {
+    "username": "oms",
+    "password": "oms",
+    "enterprise_user": true
+  })
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+```
 
 >JSON response example for customer login:
 
@@ -119,6 +150,16 @@ A user must be logged in to perform this call.
 curl https://example.com/api/logout
 ```
 
+```javascript
+PavoB2B.get("logout")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
 ## Retrieve current user
 
 This endpoint will return the current user information with the cookie provided. If no user is found, it will return an empty response body.
@@ -138,6 +179,16 @@ A user must be logged in to perform this call.
 
 ```shell
 curl https://example.com/api/current_user
+```
+
+```javascript
+PavoB2B.get("current_user")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 >JSON response example for customer login:
@@ -181,6 +232,16 @@ A user must be logged in to perform this call.
 
 ```shell
 curl https://example.com/api/current_customer_detail
+```
+
+```javascript
+PavoB2B.get("current_customer_detail")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 ### Customer response object
