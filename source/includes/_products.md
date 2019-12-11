@@ -72,6 +72,16 @@ This endpoint lets you retreive and view all products.
 curl https://example.com/api/products
 ```
 
+```javascript
+PavoB2B.get("products")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
 #### Available Filters
 
 | Filter   | Type    | Description                                                           |
@@ -83,124 +93,120 @@ curl https://example.com/api/products
 
 ```json
 {
-  "products": [
-    {
-      "item_num": "00-010-078",
-      "sku": "00-010-078",
-      "description1": "OMS Casual Leather Handbag cell",
-      "description2": "Interior zipper pocket and two slip pocketswwww",
-      "description3": "Roomy main compartmentssss",
-      "brand": "DISNEY Park",
-      "class_code": "ZZZA",
-      "color": "RED",
-      "color_description": "",
-      "division": "DD112",
-      "department": "11",
-      "oem_code": "YAOME1234567890_1820",
-      "alternate_code": "APPLE",
-      "year_produced": "2015",
-      "manufacturer": "TOYOTA",
-      "model": "CAMRY",
-      "group_code": "GP1",
-      "size": "A17",
-      "price_by": "business_type",
-      "prices": [
-        {
-          "retail_price": 100,
-          "price": 98.23
-        }
-      ],
-      "quantity": 13451,
-      "case_dimensions": {
-        "volume": {
-          "unit": "INCH",
-          "value": 1.9444
-        },
-        "weight": {
-          "unit": "POUND",
-          "value": 3
-        },
-        "box_quantity": {
-          "unit": "CS",
-          "value": 5
-        },
-        "case_quantity": {
-          "unit": "2",
-          "value": 150
-        }
+  "products": [{
+    "item_num": "00-010-078",
+    "sku": "00-010-078",
+    "description1": "OMS Casual Leather Handbag cell",
+    "description2": "Interior zipper pocket and two slip pocketswwww",
+    "description3": "Roomy main compartmentssss",
+    "brand": "DISNEY Park",
+    "class_code": "ZZZA",
+    "color": "RED",
+    "color_description": "",
+    "division": "DD112",
+    "department": "11",
+    "oem_code": "YAOME1234567890_1820",
+    "alternate_code": "APPLE",
+    "year_produced": "2015",
+    "manufacturer": "TOYOTA",
+    "model": "CAMRY",
+    "group_code": "GP1",
+    "size": "A17",
+    "price_by": "business_type",
+    "prices": [{
+      "retail_price": 100,
+      "price": 98.23
+    }],
+    "quantity": 13451,
+    "case_dimensions": {
+      "volume": {
+        "unit": "INCH",
+        "value": 1.9444
       },
-      "unit_dimensions": {
-        "volume": {
-          "unit": "INCH",
-          "value": 0.9931
-        },
-        "weight": {
-          "unit": "POUND",
-          "value": 2
-        }
+      "weight": {
+        "unit": "POUND",
+        "value": 3
       },
-      "images": []
+      "box_quantity": {
+        "unit": "CS",
+        "value": 5
+      },
+      "case_quantity": {
+        "unit": "2",
+        "value": 150
+      }
     },
-    {
-      "item_num": "00-010-079",
-      "sku": "00-010-079",
-      "description1": "OMS Halloween Decor Pumpkin Cookies",
-      "description2": "YUFENG Green Latex Pumpkin Head Masks of Cosplay",
-      "description3": "Halloween Masquerade Party Creepy Scary Terrorist Mask",
-      "brand": "",
-      "class_code": "SALE",
-      "color": "PINK",
-      "color_description": "",
-      "division": "",
-      "department": "KID",
-      "oem_code": "",
-      "alternate_code": "",
-      "year_produced": "2015",
-      "manufacturer": "",
-      "model": "",
-      "group_code": "",
-      "size": "M",
-      "price_by": "business_type",
-      "prices": [
-        {
-          "retail_price": 89.57,
-          "price": 66
-        }
-      ],
-      "quantity": 9364,
-      "case_dimensions": {
-        "volume": {
-          "unit": "INCH",
-          "value": 10
-        },
-        "weight": {
-          "unit": "POUND",
-          "value": 12
-        },
-        "box_quantity": {
-          "unit": "PC",
-          "value": 100
-        },
-        "case_quantity": {
-          "unit": "PC",
-          "value": 200
-        }
+    "unit_dimensions": {
+      "volume": {
+        "unit": "INCH",
+        "value": 0.9931
       },
-      "unit_dimensions": {
-        "volume": {
-          "unit": "INCH",
-          "value": 1
-        },
-        "weight": {
-          "unit": "POUND",
-          "value": 0.5
-        }
+      "weight": {
+        "unit": "POUND",
+        "value": 2
+      }
+    },
+    "images": []
+  },
+  {
+    "item_num": "00-010-079",
+    "sku": "00-010-079",
+    "description1": "OMS Halloween Decor Pumpkin Cookies",
+    "description2": "YUFENG Green Latex Pumpkin Head Masks of Cosplay",
+    "description3": "Halloween Masquerade Party Creepy Scary Terrorist Mask",
+    "brand": "",
+    "class_code": "SALE",
+    "color": "PINK",
+    "color_description": "",
+    "division": "",
+    "department": "KID",
+    "oem_code": "",
+    "alternate_code": "",
+    "year_produced": "2015",
+    "manufacturer": "",
+    "model": "",
+    "group_code": "",
+    "size": "M",
+    "price_by": "business_type",
+    "prices": [{
+      "retail_price": 89.57,
+      "price": 66
+    }],
+    "quantity": 9364,
+    "case_dimensions": {
+      "volume": {
+        "unit": "INCH",
+        "value": 10
       },
-      "images": []
-    }
+      "weight": {
+        "unit": "POUND",
+        "value": 12
+      },
+      "box_quantity": {
+        "unit": "PC",
+        "value": 100
+      },
+      "case_quantity": {
+        "unit": "PC",
+        "value": 200
+      }
+    },
+    "unit_dimensions": {
+      "volume": {
+        "unit": "INCH",
+        "value": 1
+      },
+      "weight": {
+        "unit": "POUND",
+        "value": 0.5
+      }
+    },
+    "images": []
+  },
+  {
     // Truncated for clarity
-    ...
-  ],
+    // ...
+  }],
   "offset": 0,
   "limit": 500,
   "total": 11681
@@ -222,6 +228,16 @@ This endpoint lets you fetch images for a particular OMS item.
 
 ```shell
 curl https://example.com/api/product/images/00-010-078
+```
+
+``` javascript
+PavoB2B.get("products/images/00-010-078")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 #### Available Filters
@@ -259,6 +275,16 @@ This endpoint lets you determine what filters are available when filtering throu
 curl https://example.com/api/products/filters
 ```
 
+```javascript
+PavoB2B.get("products/filters", { load_all: false })
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
 #### Available Filters
 
 | Filter     | Type    | Description                                                                                               |
@@ -268,87 +294,82 @@ curl https://example.com/api/products/filters
 >JSON response example:
 
 ```json
-[ 
-  {
-    "filter_name": "KIDS",
-    "enabled": true,
-    "value_list": [
-      {
-        "name": "#000000",
-        "count": "2"
-      },
-      {
-        "name": "#002",
-        "count": "2"
-      },
-      {
-        "name": "#008000",
-        "count": "4"
-      },
-      {
-        "name": "#15317E",
-        "count": "2"
-      },
-      {
-        "name": "0",
-        "count": "1"
-      },
-      {
-        "name": "10.56",
-        "count": "1"
-      },
-      {
-        "name": "12-Aug",
-        "count": "4"
-      },
-      {
-        "name": "120",
-        "count": "5"
-      },
-      {
-        "name": "123",
-        "count": "7"
-      },
-      {
-        "name": "1234567890",
-        "count": "28"
-      }
-    ]
+[{
+  "filter_name": "KIDS",
+  "enabled": true,
+  "value_list": [{
+    "name": "#000000",
+    "count": "2"
   },
   {
-    "filter_name": "Price",
-    "enabled": true,
-    "value_list": [
-      {
-        "name": "Under $10.00",
-        "count": "1874",
-        "price_from": "0",
-        "price_to": "10"
-      },
-      {
-        "name": "$10.00 to $25.00",
-        "count": "1345",
-        "price_from": "10",
-        "price_to": "25"
-      },
-      {
-        "name": "$25.00 to $50.00",
-        "count": "214",
-        "price_from": "25",
-        "price_to": "50"
-      },
-      {
-        "name": "$50.00 to $100.00",
-        "count": "222",
-        "price_from": "50",
-        "price_to": "100"
-      },
-      {
-        "name": "$100.00 & Above",
-        "count": "134",
-        "price_from": "100",
-        "price_to": "-1"
-      }
-    ]
-  }
-]
+    "name": "#002",
+    "count": "2"
+  },
+  {
+    "name": "#008000",
+    "count": "4"
+  },
+  {
+    "name": "#15317E",
+    "count": "2"
+  },
+  {
+    "name": "0",
+    "count": "1"
+  },
+  {
+    "name": "10.56",
+    "count": "1"
+  },
+  {
+    "name": "12-Aug",
+    "count": "4"
+  },
+  {
+    "name": "120",
+    "count": "5"
+  },
+  {
+    "name": "123",
+    "count": "7"
+  },
+  {
+    "name": "1234567890",
+    "count": "28"
+  }]
+},
+{
+  "filter_name": "Price",
+  "enabled": true,
+  "value_list": [{
+    "name": "Under $10.00",
+    "count": "1874",
+    "price_from": "0",
+    "price_to": "10"
+  },
+  {
+    "name": "$10.00 to $25.00",
+    "count": "1345",
+    "price_from": "10",
+    "price_to": "25"
+  },
+  {
+    "name": "$25.00 to $50.00",
+    "count": "214",
+    "price_from": "25",
+    "price_to": "50"
+  },
+  {
+    "name": "$50.00 to $100.00",
+    "count": "222",
+    "price_from": "50",
+    "price_to": "100"
+  },
+  {
+    "name": "$100.00 & Above",
+    "count": "134",
+    "price_from": "100",
+    "price_to": "-1"
+  }]
+}]
+```
