@@ -296,6 +296,7 @@ PavoB2B.get("products/filters", { load_all: false })
 ```json
 [{
   "filter_name": "KIDS",
+  "filter_id": "Department",
   "enabled": true,
   "value_list": [{
     "name": "#000000",
