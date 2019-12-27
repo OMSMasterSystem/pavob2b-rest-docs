@@ -242,16 +242,16 @@ For performance considerations, this endpoint will only list a subset of propert
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/orders</h6>
+        <h6>/api/ordersSummary</h6>
     </div>
 </div>
 
 ```shell
-curl https://example.com/api/orders
+curl https://example.com/api/ordersSummary
 ```
 
 ```javascript
-PavoB2B.get("orders")
+PavoB2B.get("ordersSummary")
   .then((response) => {
     console.log(response.data);
   })
@@ -281,24 +281,29 @@ PavoB2B.get("orders")
 ```json
 {
   "orders": [{
-    "order_num": "35895",
-    "order_date": "2019-12-09T20:18:23.000Z",
-    "total": 196.46,
-  },
-  {
-    "order_num": "35894",
-    "order_date": "2019-12-09T19:40:41.000Z",
-    "total": 98.23,
-  },
-  {
-    "order_num": "35893",
-    "order_date": "2019-12-09T19:38:36.000Z",
-    "total": 98.23,
-  },
-  {
-    "order_num": "35892",
-    "order_date": "2019-12-09T19:37:34.000Z",
-    "total": 98.23,
+    "order_num": "35983",
+    "order_date": "2019-12-20T22:50:20.000Z",
+    "ship_date": "2019-12-20T08:00:00.000Z",
+    "status": "OPEN",
+    "total": "97.03"
+  }, {
+    "order_num": "35981",
+    "order_date": "2019-12-20T19:35:04.000Z",
+    "ship_date": "2019-12-20T08:00:00.000Z",
+    "status": "OPEN",
+    "total": "97.03"
+  }, {
+    "order_num": "35979",
+    "order_date": "2019-12-20T00:03:14.000Z",
+    "ship_date": "2019-12-19T08:00:00.000Z",
+    "status": "OPEN",
+    "total": "97.03"
+  }, {
+    "order_num": "35978",
+    "order_date": "2019-12-20T00:02:03.000Z",
+    "ship_date": "2019-12-19T08:00:00.000Z",
+    "status": "OPEN",
+    "total": "97.03"
   },
   {
     // Truncated for clarity
