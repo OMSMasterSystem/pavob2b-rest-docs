@@ -26,6 +26,7 @@ The orders endpoint lets you place orders and fetch order history.
 | `shipping_method`      | Shipping Method object | The shipping method of the order, including tracking and details of the fulfillment. See `Shipping Method properties`.                                            |
 | `source`               | string                 | The source where the order was placed to be filled in the Source field in the OMS Sales Order. If not set, will use `Pavo B2B` by default.                        |
 | `line_items`           | Order Line Item array  | An array of line items associated with the shopping cart. See `Order Line Item properties`. <i class="label label-info">read-only</i>                             |
+| `status`               | string                 | The status of the order, could be `Open`, `Shipped`, `Cancelled`, `BO(Back Order)` . <i class="label label-info">read-only</i>                             |
 
 ### Order Line Item properties
 
@@ -242,16 +243,16 @@ For performance considerations, this endpoint will only list a subset of propert
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/ordersSummary</h6>
+        <h6>/api/orders_summary</h6>
     </div>
 </div>
 
 ```shell
-curl https://example.com/api/ordersSummary
+curl https://example.com/api/orders_summary
 ```
 
 ```javascript
-PavoB2B.get("ordersSummary")
+PavoB2B.get("orders_summary")
   .then((response) => {
     console.log(response.data);
   })
