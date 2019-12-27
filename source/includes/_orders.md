@@ -285,25 +285,25 @@ PavoB2B.get("ordersSummary")
     "order_date": "2019-12-20T22:50:20.000Z",
     "ship_date": "2019-12-20T08:00:00.000Z",
     "status": "OPEN",
-    "total": "97.03"
+    "total": 97.03
   }, {
     "order_num": "35981",
     "order_date": "2019-12-20T19:35:04.000Z",
     "ship_date": "2019-12-20T08:00:00.000Z",
     "status": "OPEN",
-    "total": "97.03"
+    "total": 97.03
   }, {
     "order_num": "35979",
     "order_date": "2019-12-20T00:03:14.000Z",
     "ship_date": "2019-12-19T08:00:00.000Z",
     "status": "OPEN",
-    "total": "97.03"
+    "total": 97.03
   }, {
     "order_num": "35978",
     "order_date": "2019-12-20T00:02:03.000Z",
     "ship_date": "2019-12-19T08:00:00.000Z",
     "status": "OPEN",
-    "total": "97.03"
+    "total": 97.03
   },
   {
     // Truncated for clarity
