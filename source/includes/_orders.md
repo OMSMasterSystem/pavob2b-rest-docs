@@ -26,6 +26,7 @@ The orders endpoint lets you place orders and fetch order history.
 | `shipping_method`      | Shipping Method object | The shipping method of the order, including tracking and details of the fulfillment. See `Shipping Method properties`.                                            |
 | `source`               | string                 | The source where the order was placed to be filled in the Source field in the OMS Sales Order. If not set, will use `Pavo B2B` by default.                        |
 | `line_items`           | Order Line Item array  | An array of line items associated with the shopping cart. See `Order Line Item properties`. <i class="label label-info">read-only</i>                             |
+| `status`               | string                 | The status of the order, could be `OPEN`, `SHIPPED`, `CANCELLED`, `BO(Back Order)`. <i class="label label-info">read-only</i>                             |
 
 ### Order Line Item properties
 
@@ -242,16 +243,16 @@ For performance considerations, this endpoint will only list a subset of propert
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/orders</h6>
+        <h6>/api/orders_summary</h6>
     </div>
 </div>
 
 ```shell
-curl https://example.com/api/orders
+curl https://example.com/api/orders_summary
 ```
 
 ```javascript
-PavoB2B.get("orders")
+PavoB2B.get("orders_summary")
   .then((response) => {
     console.log(response.data);
   })
@@ -281,24 +282,29 @@ PavoB2B.get("orders")
 ```json
 {
   "orders": [{
-    "order_num": "35895",
-    "order_date": "2019-12-09T20:18:23.000Z",
-    "total": 196.46,
-  },
-  {
-    "order_num": "35894",
-    "order_date": "2019-12-09T19:40:41.000Z",
-    "total": 98.23,
-  },
-  {
-    "order_num": "35893",
-    "order_date": "2019-12-09T19:38:36.000Z",
-    "total": 98.23,
-  },
-  {
-    "order_num": "35892",
-    "order_date": "2019-12-09T19:37:34.000Z",
-    "total": 98.23,
+    "order_num": "35983",
+    "order_date": "2019-12-20T22:50:20.000Z",
+    "ship_date": "2019-12-20T08:00:00.000Z",
+    "status": "OPEN",
+    "total": 97.03
+  }, {
+    "order_num": "35981",
+    "order_date": "2019-12-20T19:35:04.000Z",
+    "ship_date": "2019-12-20T08:00:00.000Z",
+    "status": "OPEN",
+    "total": 97.03
+  }, {
+    "order_num": "35979",
+    "order_date": "2019-12-20T00:03:14.000Z",
+    "ship_date": "2019-12-19T08:00:00.000Z",
+    "status": "OPEN",
+    "total": 97.03
+  }, {
+    "order_num": "35978",
+    "order_date": "2019-12-20T00:02:03.000Z",
+    "ship_date": "2019-12-19T08:00:00.000Z",
+    "status": "OPEN",
+    "total": 97.03
   },
   {
     // Truncated for clarity
