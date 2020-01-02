@@ -4,29 +4,30 @@ The orders endpoint lets you place orders and fetch order history.
 
 ## Order properties
 
-| Attribute              | Type                   | Description                                                                                                                                                       |
-| ---------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `order_num`            | string                 | OMS Order Number. <i class="label label-info">read-only</i>                                                                                                       |
-| `order_date`           | date-time              | Date/time the order was placed. <i class="label label-info">read-only</i>                                                                                         |
-| `ship_date`            | date-time              | Date/time the order was shipped. <i class="label label-info">read-only</i>                                                                                        |
-| `delivery_date`        | date-time              | Date/time the order was delivered. <i class="label label-info">read-only</i>                                                                                      |
-| `email`                | string                 | Email address assigned to the order. Order statuses should be sent to this email address.                                                                         |
-| `subtotal`             | number                 | The subtotal for this order before any discounts, taxes, or shipping/handling charges. <i class="label label-info">read-only</i>                                  |
-| `total`                | number                 | The total price for this order. <i class="label label-info">read-only</i>                                                                                         |
-| `after_discount_total` | number                 | The total price for this order after discounts are applied, but before taxes and shipping/handling charges are applied. <i class="label label-info">read-only</i> |
-| `discount_rate`        | number                 | The discount rate of the order, supplied as a number between `0` and `100`. <i class="label label-info">read-only</i>                                               |
-| `discount_amount`      | number                 | The total amount of discounts applied to the order, supplied as a positive number. <i class="label label-info">read-only</i>                                      |
-| `taxable_amount`       | number                 | The total price of taxable items before any discounts and shipping/handling charges are applied. <i class="label label-info">read-only</i>                        |
-| `non_taxable_amount`   | number                 | The total price of nontaxable items before any discounts and shipping/handling charges are applied. <i class="label label-info">read-only</i>                     |
-| `tax_rate`             | number                 | The tax rate of the order, supplied as a number between `0` and `100`. <i class="label label-info">read-only</i>                                                    |
-| `shipping_total`       | number                 | The total shipping price of the order. <i class="label label-info">read-only</i>                                                                                  |
-| `handling_total`       | number                 | The total handling price of the order. <i class="label label-info">read-only</i>                                                                                  |
-| `billing_address`      | Address object         | The billing address of the order.                                                                                                                                 |
-| `shipping_address`     | Address object         | The shipping address of the order.                                                                                                                                |
-| `shipping_method`      | Shipping Method object | The shipping method of the order, including tracking and details of the fulfillment. See `Shipping Method properties`.                                            |
-| `source`               | string                 | The source where the order was placed to be filled in the Source field in the OMS Sales Order. If not set, will use `Pavo B2B` by default.                        |
-| `line_items`           | Order Line Item array  | An array of line items associated with the shopping cart. See `Order Line Item properties`. <i class="label label-info">read-only</i>                             |
-| `status`               | string                 | The status of the order, could be `OPEN`, `SHIPPED`, `CANCELLED`, `BO` (Back Order). <i class="label label-info">read-only</i>                             |
+| Attribute              | Type                   | Description                                                                                                                                                          |
+| ---------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `order_num`            | string                 | OMS Order Number. <i class="label label-info">read-only</i>                                                                                                          |
+| `order_date`           | date-time              | Date/time the order was placed. <i class="label label-info">read-only</i>                                                                                            |
+| `ship_date`            | date-time              | Date/time the order was shipped. <i class="label label-info">read-only</i>                                                                                           |
+| `delivery_date`        | date-time              | Date/time the order was delivered. <i class="label label-info">read-only</i>                                                                                         |
+| `email`                | string                 | Email address assigned to the order. Order statuses should be sent to this email address.                                                                            |
+| `email_sent`           | boolean                | Whether an email was successfully sent to the email address listed in the `email` property. This property is only present in the response object of creating orders. |
+| `subtotal`             | number                 | The subtotal for this order before any discounts, taxes, or shipping/handling charges. <i class="label label-info">read-only</i>                                     |
+| `total`                | number                 | The total price for this order. <i class="label label-info">read-only</i>                                                                                            |
+| `after_discount_total` | number                 | The total price for this order after discounts are applied, but before taxes and shipping/handling charges are applied. <i class="label label-info">read-only</i>    |
+| `discount_rate`        | number                 | The discount rate of the order, supplied as a number between `0` and `100`. <i class="label label-info">read-only</i>                                                |
+| `discount_amount`      | number                 | The total amount of discounts applied to the order, supplied as a positive number. <i class="label label-info">read-only</i>                                         |
+| `taxable_amount`       | number                 | The total price of taxable items before any discounts and shipping/handling charges are applied. <i class="label label-info">read-only</i>                           |
+| `non_taxable_amount`   | number                 | The total price of nontaxable items before any discounts and shipping/handling charges are applied. <i class="label label-info">read-only</i>                        |
+| `tax_rate`             | number                 | The tax rate of the order, supplied as a number between `0` and `100`. <i class="label label-info">read-only</i>                                                     |
+| `shipping_total`       | number                 | The total shipping price of the order. <i class="label label-info">read-only</i>                                                                                     |
+| `handling_total`       | number                 | The total handling price of the order. <i class="label label-info">read-only</i>                                                                                     |
+| `billing_address`      | Address object         | The billing address of the order.                                                                                                                                    |
+| `shipping_address`     | Address object         | The shipping address of the order.                                                                                                                                   |
+| `shipping_method`      | Shipping Method object | The shipping method of the order, including tracking and details of the fulfillment. See `Shipping Method properties`.                                               |
+| `source`               | string                 | The source where the order was placed to be filled in the Source field in the OMS Sales Order. If not set, will use `Pavo B2B` by default.                           |
+| `line_items`           | Order Line Item array  | An array of line items associated with the shopping cart. See `Order Line Item properties`. <i class="label label-info">read-only</i>                                |
+| `status`               | string                 | The status of the order, could be `OPEN`, `SHIPPED`, `CANCELLED`, `BO` (Back Order). <i class="label label-info">read-only</i>                                       |
 
 ### Order Line Item properties
 
@@ -48,7 +49,7 @@ The orders endpoint lets you place orders and fetch order history.
 | `item_note`            | string    | Any additional notes attached to this item. <i class="label label-info">read-only</i>                                                                                                                                                                                     |
 | `price`                | number    | The price of this item, minus any discounts or taxes applied. <i class="label label-info">read-only</i>                                                                                                                                                                   |
 | `after_discount_price` | number    | The price of this item after discounts are applied. <i class="label label-info">read-only</i>                                                                                                                                                                             |
-| `discount_rate`        | number    | The discount rate of the order, supplied as a number between `0` and `100`. <i class="label label-info">read-only</i>                                                                                                                                                       |
+| `discount_rate`        | number    | The discount rate of the order, supplied as a number between `0` and `100`. <i class="label label-info">read-only</i>                                                                                                                                                     |
 | `taxable_amount`       | number    | The taxable amount for this line item. <i class="label label-info">read-only</i>                                                                                                                                                                                          |
 | `non_taxable_amount`   | number    | The nontaxable amount for this line itme. <i class="label label-info">read-only</i>                                                                                                                                                                                       |
 | `warehouse`            | string    | The OMS Warehouse Number associated with this line item. <i class="label label-info">read-only</i>                                                                                                                                                                        |
@@ -99,6 +100,7 @@ Items must be added to the Shopping Cart first before placing an order. No items
 curl -X POST https://example.com/api/orders
     -d '{
     "email": "asdf@asdf.com",
+    "send_email": true,
     "source": "Pavo B2B",
     "billing_address": {
         "full_name": "Rusty",
@@ -121,6 +123,7 @@ curl -X POST https://example.com/api/orders
 ```javascript
 PavoB2B.post("orders", {
   "email": "asdf@asdf.com",
+  "send_email": true,
   "source": "Pavo B2B",
   "billing_address": {
       "full_name": "Rusty",
@@ -148,13 +151,14 @@ PavoB2B.post("orders", {
 
 ### Request object properties
 
-| Attribute          | Type                   | Description                                                                                                                                |
-| ------------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `email`            | string                 | Email address of the customer placing the order. If not set, OMS will use the default email set in the Customer File.                      |
-| `billing_address`  | Address object         | The billing address of the customer. If not set, OMS will use the default billing address set in the Customer File.                        |
-| `shipping_address` | Address object         | The shipping address of the customer. If not set, OMS will use the default shipping address set in the Customer File.                      |
-| `shipping_method`  | Shipping Method object | The shipping method of the order. This can optionally match with a Ship-Via method on the OMS System Manager.                              |
-| `source`           | string                 | The source where the order was placed to be filled in the Source field in the OMS Sales Order. If not set, will use `Pavo B2B` by default. |
+| Attribute          | Type                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------ | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `email`            | string                 | Email address of the customer placing the order. If not set, OMS will use the default email set in the Customer File. A validation check will be performed on the `email` property.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `send_email`       | boolean                | If `true`, will send an order confirmation email to the address listed in the `email` property, or to the default email address set in the OMS Customer File if the `email` property is not set. An email will only send under the following conditions: 1) The order is saved successfully in OMS and an OMS Order Number is generated; 2) If the `email` property is set, is a valid email address (i.e. contains "@"); and 3) If the `email` property is not set, the default email set for the customer in the OMS Customer File is a valid email address. Defaults to `false`. |
+| `billing_address`  | Address object         | The billing address of the customer. If not set, OMS will use the default billing address set in the Customer File.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `shipping_address` | Address object         | The shipping address of the customer. If not set, OMS will use the default shipping address set in the Customer File.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `shipping_method`  | Shipping Method object | The shipping method of the order. This can optionally match with a Ship-Via method on the OMS System Manager.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `source`           | string                 | The source where the order was placed to be filled in the Source field in the OMS Sales Order. If not set, will use `Pavo B2B` by default.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 >JSON response example:
 
@@ -164,7 +168,8 @@ PavoB2B.post("orders", {
   "order_date": "2019-12-09T20:18:23.000Z",
   "ship_date": "2019-12-09T08:00:00.000Z",
   "delivery_date": "0001-01-01T08:00:00.000Z",
-  "email": "",
+  "email": "asdf@asdf.com",
+  "email_sent": true,
   "subtotal": 196.46,
   "total": 196.46,
   "after_discount_total": 196.46,
